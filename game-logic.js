@@ -74,7 +74,7 @@ const planets = [
                 { text: "{name} encontra um oásis escondido.", healing: 25 }
             ],
             combat: [
-                { text: "Um escorpião gigante bloqueia seu caminho!", enemy: { name: "Escorpião Gigante", hp: 80, damage: 15 } }
+                { text: "Um escorpião gigante bloqueia seu caminho!", enemy: { name: "Escorpião Gigante", hp: 80, damage: 15 } },
                 { text: "{name1} encontra um general esqueleto no deserto!", enemy: { name: "General Esqueleto", hp: 100, damage: 20 } }
             ]
         }
