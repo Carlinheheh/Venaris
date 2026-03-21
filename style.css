@@ -69,23 +69,30 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
 }
 
 /* Estilos gerais para as telas */
 .screen {
     display: none;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
+    width: 100%;
+    height: 100vh; /* Mantido height para controle total */
+    position: fixed; /* Voltou para fixed para evitar saltos de layout */
     top: 0;
     left: 0;
     z-index: 10;
+    overflow-y: auto; /* Scroll interno na tela */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-color: #000;
 }
 
 .screen.active {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -303,13 +310,13 @@ body {
     z-index: 2;
     text-align: center;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    padding: 40px 20px;
+    padding: 60px 20px;
 }
 
 .home-credit {
@@ -338,7 +345,7 @@ body {
 
 .home-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 80px;
+    font-size: clamp(40px, 10vw, 80px); /* Fonte responsiva */
     font-weight: bold;
     letter-spacing: 6px;
     text-transform: uppercase;
@@ -346,30 +353,35 @@ body {
     text-shadow: 
         0 0 10px rgba(119, 0, 255, 0.5),
         0 0 20px rgba(119, 0, 255, 0.3);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .menu-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
+    width: 100%;
+    max-width: 500px;
 }
 
 .main-button {
-    width: 400px;
-    height: 120px;
+    width: 100%;
+    max-width: 400px;
+    height: 100px;
 }
 
 .menu-row {
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
+    width: 100%;
 }
 
 .secondary-button {
-    width: 200px;
-    height: 80px;
+    width: clamp(140px, 45%, 200px);
+    height: 70px;
 }
 
 .menu-item {
@@ -519,30 +531,86 @@ body {
     margin-bottom: 15px;
 }
 
-/* CSS para modal crew */
-#full-crew-display {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    border: 1px solid #7700ff;
-}
-
-/* Responsividade para mobile */
-@media (max-width: 768px) {
-    .modal-content {
-        max-width: 90%;
-        padding: 30px 20px;
+/* ==================== RESPONSIVIDADE GERAL ==================== */
+@media (max-width: 600px) {
+    .venaris-title {
+        font-size: 60px;
+        letter-spacing: 4px;
     }
 
-    .modal-content h2 {
-        font-size: 24px;
+    .introduction-content {
+        padding-top: 10vh;
+        gap: 20px;
     }
 
-    .modal-text {
+    .intro-text {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .game-header {
+        grid-template-columns: 1fr;
+        gap: 10px;
         font-size: 14px;
+    }
+
+    .header-left {
+        justify-self: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .manage-crew-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .planet-name {
+        justify-self: center;
+    }
+
+    .crew-display {
+        gap: 5px;
+    }
+
+    .crew-member {
+        padding: 5px;
+    }
+
+    .crew-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .crew-name {
+        font-size: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .character-selection-content h2 {
+        font-size: 22px;
+    }
+
+    #full-crew-display {
+        grid-template-columns: 1fr;
+    }
+
+    .planet-card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .planet-intro-overlay h1 {
+        font-size: 32px;
+        letter-spacing: 5px;
+    }
+
+    .planet-intro-overlay p {
+        font-size: 16px;
     }
 }
 
@@ -621,14 +689,15 @@ body {
 
 .selected-crew {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .crew-slot {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border: 2px dashed #7700ff;
     border-radius: 10px;
     display: flex;
@@ -638,6 +707,7 @@ body {
     background: rgba(119, 0, 255, 0.1);
     font-weight: bold;
     position: relative;
+    font-size: 12px;
 }
 
 .remove-btn {
@@ -671,11 +741,11 @@ body {
 
 .character-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
     width: 100%;
     max-width: 900px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .character-card {
@@ -944,40 +1014,47 @@ body {
 .crew-display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .crew-member {
     background: rgba(119, 0, 255, 0.1);
     border: 2px solid #7700ff;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 0; /* Evita quebra de grid */
 }
 
 .crew-image {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
     border: 2px solid #7700ff;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .crew-name {
     color: #7700ff;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .crew-hp {
     color: #ffffff;
-    font-size: 12px;
-    margin-bottom: 8px;
+    font-size: 10px;
+    margin-bottom: 5px;
 }
 
 .health-bar {

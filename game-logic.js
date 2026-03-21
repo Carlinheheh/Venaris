@@ -60,7 +60,9 @@ const planets = [
                 "{name1} encontra destroços de uma moto.",
                 "{name2} fala para {name1} que está morrendo de calor.",
                 "{name3} se encontra com um grupo de delinquentes, mas decide ignorá-los.",
-                "{name1} dorme no meio do deserto e é roubado, perdendo 20 moedas."
+                "{name1} dorme no meio do deserto e é roubado, perdendo 20 moedas.",
+                "{name3} se espanta quando vê uma pilha de ossos no deserto.",
+                "{name2} foge de algo.",
             ],
             negative: [
                 { text: "Um bando de saqueadores ataca {name1}!", damage: 20 },
@@ -73,6 +75,7 @@ const planets = [
             ],
             combat: [
                 { text: "Um escorpião gigante bloqueia seu caminho!", enemy: { name: "Escorpião Gigante", hp: 80, damage: 15 } }
+                { text: "{name1} encontra um general esqueleto no deserto!", enemy: { name: "General Esqueleto", hp: 100, damage: 20 } }
             ]
         }
     },
