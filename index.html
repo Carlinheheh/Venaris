@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venaris</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Tela de Introdução -->
+    <div id="introduction-screen" class="screen active">
+        <div class="introduction-content">
+            <div id="intro-logo" class="intro-logo">
+                <!-- LOGO: Adicione uma tag <img> ou <svg> aqui -->
+                <!-- Exemplo: <img src="images/logo.png" alt="Venaris Logo" /> -->
+            </div>
+            <p id="intro-text" class="intro-text"></p>
+            <p id="skip-hint" class="skip-hint">Clique ou pressione ESPAÇO para pular</p>
+        </div>
+    </div>
+
+    <!-- Tela de Título -->
+    <div id="title-screen" class="screen">
+        <div class="title-content">
+            <div id="title-logo" class="title-logo">
+               
+            </div>
+            <h1 id="venaris-title" class="venaris-title">Venaris</h1>
+        </div>
+    </div>
+
+    <!-- Tela Inicial -->
+    <div id="home-screen" class="screen">
+        <div class="home-content">
+            <div id="home-logo" class="home-logo">
+            
+            </div>
+            <h2 class="home-title">Venaris</h2>
+            
+            <div class="menu-container">
+                <div class="menu-item main-button">
+                    <a href="#jogar">Jogar</a>
+                </div>
+                
+                <div class="menu-row">
+                    <div class="menu-item secondary-button">
+                        <a href="#historias">Ler Histórias</a>
+                    </div>
+                    <div class="menu-item secondary-button">
+                        <a href="#perfil">Meu Perfil</a>
+                    </div>
+                    <div class="menu-item secondary-button">
+                        <a href="#sobre">Sobre</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-credit">
+                Por Carlos Eduardo Boaventura dos Santos
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sobre -->
+    <div id="about-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Sobre Venaris</h2>
+            <div class="modal-text">
+                <p>Nesse universo apelidado de "Venaris" você assume o papel de três tripulantes e seu objetivo é explorar a galáxia e descobrir seus segredos. Esse universo é cruel, então tome muito cuidado para não ser brutalmente morto por
+                    alienígenas ou derreter em chuvas de ácido. Seja forte e principalmente:
+                    <p>
+                    leve água com você.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TELAS DO JOGO ==================== -->
+
+    <!-- Tela de Seleção de Personagens -->
+    <div id="character-selection-screen" class="screen">
+        <div class="character-selection-content">
+            <h2>Selecione seus 3 Tripulantes</h2>
+            <div class="selected-crew">
+                <div class="crew-slot" id="crew-slot-1">
+                    <span id="slot-1-content">Slot 1</span>
+                    <button id="remove-crew-1" class="remove-btn" style="display: none;">✕</button>
+                </div>
+                <div class="crew-slot" id="crew-slot-2">
+                    <span id="slot-2-content">Slot 2</span>
+                    <button id="remove-crew-2" class="remove-btn" style="display: none;">✕</button>
+                </div>
+                <div class="crew-slot" id="crew-slot-3">
+                    <span id="slot-3-content">Slot 3</span>
+                    <button id="remove-crew-3" class="remove-btn" style="display: none;">✕</button>
+                </div>
+            </div>
+            <div class="character-grid" id="character-grid">
+                <!-- Personagens aparecerão aqui -->
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <button id="add-character-btn" class="btn btn-secondary">+ Adicionar Personagem Customizado</button>
+                <button id="start-game-btn" class="btn btn-primary" disabled>Iniciar Jogo</button>
+                <button id="back-to-menu-btn" class="btn btn-secondary">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Seleção de Planeta -->
+    <div id="planet-selection-screen" class="screen">
+        <div class="planet-selection-content">
+            <h2>Escolha o Planeta de Destino</h2>
+            <p style="color: #aaa; margin-bottom: 30px;">Cada planeta possui seus próprios perigos, criaturas e segredos.</p>
+            <div class="planet-grid" id="planet-grid">
+                <!-- Planetas aparecerão aqui -->
+            </div>
+            <div style="margin-top: 30px;">
+                <button id="back-to-chars-btn" class="btn btn-secondary">← Voltar para Personagens</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Criação de Personagens -->
+    <div id="character-creation-screen" class="screen">
+        <div class="character-creation-content">
+            <h2>Criar Novo Personagem</h2>
+            <form id="character-form">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="char-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Descrição:</label>
+                    <textarea id="char-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Foto (URL ou Upload):</label>
+                    <input type="file" id="char-image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Item Inicial (selecione um dos itens do jogo):</label>
+                    <select id="char-item" required>
+                        <option value="">-- Escolha um item --</option>
+                        <!-- Items adicionados aqui -->
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Criar Personagem</button>
+                    <button type="button" class="btn btn-secondary" id="close-creation">← Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela do Jogo Principal -->
+    <div id="game-screen" class="screen">
+        <!-- Overlay de Introdução do Planeta -->
+        <div id="planet-intro-overlay" class="planet-intro-overlay">
+            <h1 id="intro-planet-name">Planeta</h1>
+            <p id="intro-planet-text">Descrição da introdução...</p>
+        </div>
+
+        <div class="game-container">
+            <!-- Informações do Dia e Planeta -->
+            <div class="game-header">
+                <div class="header-left">
+                    <button id="game-back-btn" class="manage-crew-btn" style="border-color: #ff4444; color: #ff4444; margin-right: 15px;">VOLTAR</button>
+                    <div class="day-counter">Dia <span id="current-day">1</span>/10</div>
+                </div>
+                <button id="open-crew-modal-btn" class="manage-crew-btn">GERENCIAR TRIPULAÇÃO</button>
+                <div class="planet-name" id="planet-name">Planeta: ---</div>
+            </div>
+
+            <!-- Tripulação -->
+            <div class="crew-display">
+                <div class="crew-member" id="crew-member-1">
+                    <img src="" alt="" class="crew-image" id="crew-image-1">
+                    <div class="crew-name">-</div>
+                    <div class="crew-hp"><span id="hp-1">100</span>/100</div>
+                    <div class="health-bar"><div class="health-fill" id="health-fill-1"></div></div>
+                </div>
+                <div class="crew-member" id="crew-member-2">
+                    <img src="" alt="" class="crew-image" id="crew-image-2">
+                    <div class="crew-name">-</div>
+                    <div class="crew-hp"><span id="hp-2">100</span>/100</div>
+                    <div class="health-bar"><div class="health-fill" id="health-fill-2"></div></div>
+                </div>
+                <div class="crew-member" id="crew-member-3">
+                    <img src="" alt="" class="crew-image" id="crew-image-3">
+                    <div class="crew-name">-</div>
+                    <div class="crew-hp"><span id="hp-3">100</span>/100</div>
+                    <div class="health-bar"><div class="health-fill" id="health-fill-3"></div></div>
+                </div>
+            </div>
+
+            <!-- Evento -->
+            <div class="event-display">
+                <h3>Evento do Dia</h3>
+                <div class="event-text" id="event-text">Iniciando primeiro dia...</div>
+                <div class="event-actions" id="event-actions">
+                    <!-- Ações do evento aparecem aqui -->
+                </div>
+            </div>
+
+            <!-- Combate (quando aplicável) -->
+            <!-- Modal Trocar Tripulante -->
+            <div id="swap-crew-modal" class="modal" style="display: none; justify-content: center; align-items: center;">
+                <div class="modal-overlay"></div>
+                <div class="modal-content" style="max-height: 90vh; overflow-y: auto; width: 90%; max-width: 900px; display: flex; flex-direction: column; align-items: center;">
+                    <button class="modal-close" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; color: #7700ff; cursor: pointer; z-index: 10;">&times;</button>
+                    <h2 style="text-align: center; margin-bottom: 30px; margin-top: 10px;">Gerenciar Tripulação</h2>
+                    <p style="color: #aa44ff; font-size: 14px; margin-bottom: 20px; font-weight: bold; text-align: center;">Clique ou arraste para TROCAR entre EM JOGO (verde) e RESERVA</p>
+                    <div id="full-crew-display" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; max-height: 60vh; overflow-y: auto; padding: 10px;">
+                        <!-- Tripulantes aparecem aqui -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="battle-display" class="battle-display" style="display: none;">
+                <div class="battle-info">
+                    <div class="battle-participant" id="battle-player">
+                        <div class="battle-name">Seu Tripulante</div>
+                        <div class="battle-hp" id="battle-player-hp">100/100</div>
+                        <div class="battle-health-bar"><div class="battle-health-fill" id="battle-player-bar"></div></div>
+                    </div>
+                    <div class="battle-vs">VS</div>
+                    <div class="battle-participant" id="battle-enemy">
+                        <div class="battle-name">Inimigo</div>
+                        <div class="battle-hp" id="battle-enemy-hp">100/100</div>
+                        <div class="battle-health-bar"><div class="battle-health-fill" id="battle-enemy-bar"></div></div>
+                    </div>
+                </div>
+                <!-- Área de mensagens de combate -->
+                <div id="battle-log" class="battle-log">
+                    <p id="battle-message" style="color: #aa44ff; text-align: center; font-size: 14px; min-height: 20px;"></p>
+                </div>
+                <button id="attack-btn" class="btn btn-primary">Atacar</button>
+            </div>
+
+            <!-- Final da Exploração -->
+            <div id="end-screen" class="end-screen" style="display: none;">
+                <div class="success-message">
+                    <h1>SUCESSO</h1>
+                    <h2>Planeta Explorado</h2>
+                    <p id="final-crew">Sua tripulação sobreviveu!</p>
+                    <button id="return-to-menu" class="btn btn-primary">Voltar ao Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="game-logic.js"></script>
+</body>
+</html>
