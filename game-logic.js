@@ -447,10 +447,10 @@ function selectPlanet(planet) {
     
     // Sumir com a introdução após alguns segundos e começar o jogo
     setTimeout(() => {
-        overlay.style.opacity = '0';
+        overlay.classList.add('fade-out');
         setTimeout(() => {
             overlay.classList.remove('active');
-            overlay.style.opacity = '1'; // Reset para próxima vez
+            overlay.classList.remove('fade-out');
             playNextEvent();
         }, 1000);
     }, 4000);
@@ -1122,14 +1122,25 @@ function resetGameState() {
     const battleCharDisplay = document.getElementById('battle-character-display');
     
     if (crewDisplay) crewDisplay.style.display = 'grid';
-    if (eventDisplay) eventDisplay.style.display = 'block';
+    if (eventDisplay) {
+        eventDisplay.style.display = 'flex';
+        eventDisplay.style.flexDirection = 'column';
+        eventDisplay.style.justifyContent = 'center';
+        eventDisplay.style.alignItems = 'center';
+        eventDisplay.style.textAlign = 'center';
+    }
     if (battleDisplay) battleDisplay.style.display = 'none';
     if (endScreen) endScreen.style.display = 'none';
     if (battleCharDisplay) battleCharDisplay.remove();
 
     // Resetar texto de evento
     const eventText = document.getElementById('event-text');
-    if (eventText) eventText.innerHTML = "Iniciando primeiro dia...";
+    if (eventText) {
+        eventText.innerHTML = "Iniciando primeiro dia...";
+        eventText.style.textAlign = 'center';
+        eventText.style.color = '';
+        eventText.style.fontWeight = '';
+    }
     
     const eventActions = document.getElementById('event-actions');
     if (eventActions) eventActions.innerHTML = "";

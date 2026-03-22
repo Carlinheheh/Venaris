@@ -1,13 +1,13 @@
 // Narrativa de introdução
 const introductionText = `
-Histórias Esquecidas… Planetas Inexplorados…
-Deuses Enterrados... Civilizações Alienígenas…
+Histórias Esquecidas... Planetas Inexplorados...
+Deuses Enterrados... Civilizações Alienígena...
 O espaço pode parecer assustador para alguns, mas para outros é um belo e lindo desconhecido, 
 e aqueles atraídos por esse desconhecido, são chamados de:
 `;
 
 // Configurações de timing (em milisegundos)
-const INTRO_DISPLAY_TIME = 8000; // Introdução fica visível por 8 segundos
+const INTRO_DISPLAY_TIME = 5000; // Introdução fica visível por 8 segundos
 const TYPEWRITER_SPEED = 100; // Velocidade de digitação (ms por caractere)
 const TITLE_SCREEN_DURATION = 5000; // Tela de título fica por 5 segundos
 
